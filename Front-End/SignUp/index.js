@@ -1,6 +1,7 @@
 
 
 const form = document.getElementById('my-form');
+const login = document.getElementById('login');
 form.addEventListener('submit',async (e)=>{
     e.preventDefault();
     let name = document.getElementById('name').value;
@@ -24,4 +25,9 @@ form.addEventListener('submit',async (e)=>{
             alert('user already exists');
         }
     }
+})
+
+login.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.location.replace('../Login/Login.html');
 })
