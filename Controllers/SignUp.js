@@ -1,10 +1,7 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 exports.postSignup= async (req,res,next)=>{
-    let name = req.body.name;
-    let email = req.body.email;
-    let phone = req.body.phone;
-    let password = req.body.password;
+    let {name,email,phone,password} = req.body
     try{
         const user = await User.findOne({
             where:{
