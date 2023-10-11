@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 exports.postSignup= async (req,res,next)=>{
     let {name,email,phone,password} = req.body
     try{
@@ -39,14 +40,23 @@ exports.postLogin=async (req,res,next)=>{
             const hash_result = await bcrypt.compare(password,user.password)
             console.log('got hash',hash_result)
             if (hash_result){
-                return res.status(200).json({msg:'user successfully logged in'});
+                const token = getAccessToken(user.id);
+                return res.status(200).json({msg:'user successfully logged in',token:token});
+            }
+            else{
+                return res.status(401).json({msg:'User not authorized'})
             }
         }
         else{
-            res.status(500).json({msg:'user does not exists'});
+            res.status(404).json({msg:'user does not exists'});
         }
     }
     catch(err){
         console.log(err)
     }
+}
+
+function getAccessToken(data){
+    const token = jwt.sign(data,process.env.JWT_SECRET_KEY)
+    return token
 }
