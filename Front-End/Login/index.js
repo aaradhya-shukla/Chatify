@@ -14,6 +14,7 @@ form.addEventListener('submit',async (e)=>{
         console.log(result.data.token)
         localStorage.setItem('token',result.data.token);
         alert(result.data.msg);
+        window.location.replace('../ChatPage/chatPagealt.html');
         
     }
     catch(err){

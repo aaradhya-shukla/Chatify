@@ -1,0 +1,44 @@
+body {
+    background: #fff;
+}
+
+.container{
+    height: 100%;
+    padding: 70px;
+}
+.msg-list{
+    padding: 5%;
+}
+.card{
+    height: 100%;
+    width: 100%;
+    box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7); 
+}
+.row{
+    height: 100%;
+}
+.card-header{
+    align-content: center;
+    background: #c481b9;
+    font-size:25px;
+
+}
+.card-body{
+    margin: 20%;
+}
+.card-footer{
+    background: #c481b9;
+
+}
+.card-header .form-control-lg{
+    float: right;
+}
+
+button{
+    float: right;
+}
+.card-footer input{
+    min-width: 30%;
+    width: 60%;
+    max-width: 80%;
+}
