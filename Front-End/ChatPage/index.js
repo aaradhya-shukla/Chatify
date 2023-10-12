@@ -27,8 +27,11 @@ async function getAllmessages(){
         });
         console.log(result)
         const users = result.data.users;
-        const messages = result.data.messages;
+        let messages = result.data.messages;
         console.log(users)
+        // if(messages.length>10){
+        //     messages.splice(0,10);
+        // }
         localStorage.setItem('messages',JSON.stringify(messages));
         localStorage.setItem('users',JSON.stringify(users));
         show(users,messages)
@@ -67,6 +70,9 @@ function show(users,messages){
 
 function addNewMsg_local(message){
     const message_arr = JSON.parse(localStorage.getItem('messages'))
+    if(message_arr.length>10){
+        message_arr.splice(0,10);
+    }
     message_arr.push(message);
     localStorage.setItem('messages',JSON.stringify(message_arr));
     let li = document.createElement('textarea');
@@ -119,6 +125,9 @@ setInterval(async()=>{
 
 function addNewMsg_db(messages){
     let message_arr = JSON.parse(localStorage.getItem('messages'))
+    if(message_arr.length>10){
+        message_arr.splice(0,10);
+    }
     message_arr=[...message_arr,...messages];
     localStorage.setItem('messages',JSON.stringify(message_arr));
     for(let i of messages){
