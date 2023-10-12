@@ -24,7 +24,7 @@ body {
 
 }
 .card-body{
-    margin: 20%;
+    
 }
 .card-footer{
     background: #c481b9;
@@ -37,8 +37,41 @@ body {
 button{
     float: right;
 }
+
 .card-footer input{
     min-width: 30%;
     width: 60%;
     max-width: 80%;
+}
+.my-list{
+    margin: 10%;
+    position: relative;
+    right:100px;
+    bottom: 100px;
+}
+
+.message-inpt-user{
+    width: 230px;
+    border-radius: 25px;
+    padding: 10px;
+    padding-left: 50px;
+    border: none;
+    margin-bottom: 0.5rem;
+    box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7); 
+    vertical-align: auto;
+    margin-left: auto;
+    
+}
+.message-inpt-msg{
+    width: 230px;
+    border-radius: 25px;
+    padding: 10px;
+    padding-left: 50px;
+    border: none;
+    margin-bottom: 0.5rem;
+    box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7); 
+    vertical-align: auto;
+    margin-left: auto;
+    background-color: aqua;
+    
 }

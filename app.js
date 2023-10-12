@@ -7,6 +7,8 @@ const SignUp = require('./routes/SignUp');
 const { sign } = require('crypto');
 const cors = require('cors');
 const app = express();
+const chat = require('./models/chats');
+const chatAdmin = require('./routes/chats');
 
 app.use(cors(
     {
@@ -16,6 +18,10 @@ app.use(cors(
 ))
 app.use(bodyParser.json());
 app.use(SignUp);
+app.use(chatAdmin);
+
+User.hasMany(chat);
+chat.belongsTo(User);
 
 sequelize.sync().
 then(()=>{

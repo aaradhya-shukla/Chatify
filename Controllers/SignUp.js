@@ -41,6 +41,8 @@ exports.postLogin=async (req,res,next)=>{
             console.log('got hash',hash_result)
             if (hash_result){
                 const token = getAccessToken(user.id);
+                user.online = true;
+                await user.save();
                 return res.status(200).json({msg:'user successfully logged in',token:token});
             }
             else{
