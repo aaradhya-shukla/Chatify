@@ -6,8 +6,10 @@ const sendbtn = document.getElementById('send');
 const token = localStorage.getItem('token');
 const exitbtn = document.getElementById('exit');
 const globalbtn = document.getElementById('global');
+const admin = document.getElementById('admin');
 //Adding event listeners
 create_group.addEventListener('click',createGroup);
+admin.addEventListener('click',AdminView);
 sendbtn.addEventListener('click',sendMessage);
 exitbtn.addEventListener('click',logout);
 globalbtn.addEventListener('click',globalChat);
@@ -178,9 +180,23 @@ async function selectGroup(e){
     //pass group name to getAllMessages
     const group_name = e.target.textContent;
     localStorage.setItem('current_group',group_name);
+    const result = await axios.get(`http://localhost:3000/group/check-for-admin?group=${group_name}`,{
+        headers:{
+            authenticate:token
+        }
+    });
     await getAllMessages();
     await getAllGroups();
     await getAllUsers();
+    console.log("hello")
+    console.log("group select",result)
+    if (result.data.admin){
+        console.log("group select",result)
+        admin.disabled = false;
+    }
+    else{
+        admin.disabled = true;
+    }
 
 
 }
@@ -382,6 +398,11 @@ function globalChat(e){
     localStorage.setItem('current_group','');
     window.location.reload();
 
+}
+
+function AdminView(e){
+    e.preventDefault();
+    window.location.replace('../AdminPage/AdminPage.html');
 }
 
 setInterval(async ()=>{

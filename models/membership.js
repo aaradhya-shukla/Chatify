@@ -6,7 +6,8 @@ const Membership = sequelize.define('Membership',{
         type:Sequelize.INTEGER,
         autoIncrement:true,
         primaryKey:true
-    }
+    },
+    Admin:Sequelize.BOOLEAN
 })
 
 module.exports = Membership;

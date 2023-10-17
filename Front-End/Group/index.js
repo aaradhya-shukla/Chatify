@@ -1,5 +1,6 @@
 const numbers = document.getElementById('numbers');
 const form = document.getElementById('form-create');
+const token = localStorage.getItem('token');
 
 form.addEventListener('submit',async (e)=>{
     e.preventDefault();
@@ -12,6 +13,11 @@ form.addEventListener('submit',async (e)=>{
         const result = await axios.post('http://localhost:3000/group/get-create',{
             numbers:numbers_arr,
             name:group
+        },
+        {
+            headers:{
+                authenticate:token
+            }
         });
         console.log(result.data.msg)
     }
