@@ -9,6 +9,9 @@ const cors = require('cors');
 const app = express();
 const chat = require('./models/chats');
 const chatAdmin = require('./routes/chats');
+const Group = require('./models/Group');
+const Membership = require('./models/membership');
+const GroupAdmin = require('./routes/Group');
 
 app.use(cors(
     {
@@ -19,9 +22,14 @@ app.use(cors(
 app.use(bodyParser.json());
 app.use(SignUp);
 app.use(chatAdmin);
+app.use(GroupAdmin);
 
 User.hasMany(chat);
 chat.belongsTo(User);
+User.belongsToMany(Group,{through:Membership});
+Group.belongsToMany(User,{through:Membership});
+Group.hasMany(chat);
+chat.belongsTo(Group);
 
 sequelize.sync().
 then(()=>{

@@ -3,30 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat</title>
+    <title>Chat Page Sample</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="stylealt.css"> 
+    <link rel="stylesheet" type="text/css" href="style.css"> 
     <script src="https://kit.fontawesome.com/3c255a51a0.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">ChatRoom<input type="button" value="Exit" class="form-control-lg exit"></div>
-                    <div class="card-body" id="my-list">
-                        <!-- <input type="text" class="form-control-plaintext" value="hey" class="c"> -->
-                    </div>
-                    <div class="card-footer" id="area">
-                        <p id="user-area"></p>
-                        <p id="message-area"></p>
-                        <input type="text" placeholder="Enter your message" class="form-control-lg" id="message">
-                        <button class="form-control-lg" id="send">Send</button>
-                    </div>
+        <div class="toppane">
+            <header class="card-header">ChatRoom <button id="add-group" class="form-control-sm"><i class="fas fa-add"></i></button><button id="exit" form="form-control-sm">Exit</button></header>
+        </div>
+        <div class="d-flex">
+          <div class="leftpane">
+            <div class="card">
+                <header class="card-header">Groups</header>
+                <div class="card-body">
+                    <button id="global">GLOBAL-CHAT</button>
+                    <ul id="Group-area"></ul>
                 </div>
             </div>
+          </div>
+          <div class="middlepane">
+            <div class="card">
+                <header class="card-header">Chats</header>
+                <div class="card-body" id="message-area">
+                </div>
+                <footer class="card-footer">
+                    <input type="text" placeholder="Enter your text here" class="form-control-lg" id="message">
+                    <input type="button" value="Send" class="form-control-lg" id="send">
+                </footer>
+            </div>
+          </div>
+          <div class="rightpane">
+            <div class="card">
+                <header class="card-header">Active users</header>
+                <div class="card-body">
+                    <ul id="user-area"></ul>
+                </div>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.5.1/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="index.js"></script>

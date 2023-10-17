@@ -14,4 +14,8 @@ router.get('/user/get-users',chatAdmin.getUsers);
 
 router.get('/user/get-new-msg',chatAdmin.getNewMessages);
 
-module.exports = router
+router.get('/user/log-off',authenticate.authenticateToken,chatAdmin.getLogOff);
+
+router.get('/user/get-new-users',authenticate.authenticateToken,chatAdmin.getNewUsers)
+
+module.exports = router 
