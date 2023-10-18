@@ -35,7 +35,7 @@ async function getAllMessages(){
     console.log('gr',group_name);
     try{
         console.log('inside')
-        const result = await axios.get(`http://localhost:3000/user/get-chat?group=${group_name}`,{
+        const result = await axios.get(`http://54.210.91.135:3000/user/get-chat?group=${group_name}`,{
             headers:{
                 authenticate:token
             }
@@ -71,7 +71,7 @@ async function getNewMessages(){
         }
     }
     try{
-        const result = await axios.get(`http://localhost:3000/user/get-new-msg?messageId=${messageId}&group=${group_name}`)
+        const result = await axios.get(`http://54.210.91.135:3000/user/get-new-msg?messageId=${messageId}&group=${group_name}`)
         const new_messages = result.data.messages;
         messages = [...messages,...new_messages];
         console.log("new messages-result",result)
@@ -98,7 +98,7 @@ async function sendMessage(e){
     }
     let messages = JSON.parse(localStorage.getItem('messages'));
     try{
-        const result = await axios.post(`http://localhost:3000/user/send-msg?group=${group_name}`,{message:message_to_send},{
+        const result = await axios.post(`http://54.210.91.135:3000/user/send-msg?group=${group_name}`,{message:message_to_send},{
             headers:{
                 authenticate:token
             }
@@ -124,7 +124,7 @@ async function getAllGroups(){
     // add all groups to local storage
     // call showAllGroups
     try{
-        const result = await axios.get('http://localhost:3000/group/get-groups',{
+        const result = await axios.get('http://54.210.91.135:3000/group/get-groups',{
             headers:{
                 authenticate:token
             }
@@ -153,7 +153,7 @@ async function getNewGroups(){
     //get groups from local storage and compare new groups
     //call showNewGroup
     try{
-        const result = await axios.get('http://localhost:3000/group/get-new-groups',{
+        const result = await axios.get('http://54.210.91.135:3000/group/get-new-groups',{
             headers:{
                 authenticate:token
             }
@@ -180,7 +180,7 @@ async function selectGroup(e){
     //pass group name to getAllMessages
     const group_name = e.target.textContent;
     localStorage.setItem('current_group',group_name);
-    const result = await axios.get(`http://localhost:3000/group/check-for-admin?group=${group_name}`,{
+    const result = await axios.get(`http://54.210.91.135:3000/group/check-for-admin?group=${group_name}`,{
         headers:{
             authenticate:token
         }
@@ -214,7 +214,7 @@ async function getAllUsers(){
         group_name="";
     }
     try{
-        const result = await axios.get(`http://localhost:3000/user/get-users?group=${group_name}`,{
+        const result = await axios.get(`http://54.210.91.135:3000/user/get-users?group=${group_name}`,{
             headers:{
                 authenticate:token
             }
@@ -242,7 +242,7 @@ async function getNewUser(){
     }
     try{
         console.log(group_name)
-        const result = await axios.get(`http://localhost:3000/user/get-new-users?group=${group_name}&userId=${userId}`,{
+        const result = await axios.get(`http://54.210.91.135:3000/user/get-new-users?group=${group_name}&userId=${userId}`,{
             headers:{
                 authenticate:token
             }
@@ -378,7 +378,7 @@ async function logout(e){
         localStorage.setItem('users','');
         localStorage.setItem('groups','');
         localStorage.setItem('current_group','');
-        const result = await axios.get('http://localhost:3000/user/log-off',{
+        const result = await axios.get('http://54.210.91.135:3000/user/log-off',{
             headers:{
                 authenticate:token
             }
