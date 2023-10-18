@@ -15,7 +15,7 @@ form.addEventListener('submit',async (e)=>{
         password:password
     }
     try{
-        const result = await axios.post('http://54.210.91.135:3000/user/SignUP',userObj);
+        const result = await axios.post('http://54.210.91.135/user/SignUP',userObj);
         console.log(result);
         alert(result.data.msg);
     }

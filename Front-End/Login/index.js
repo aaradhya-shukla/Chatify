@@ -10,7 +10,7 @@ form.addEventListener('submit',async (e)=>{
         password:password
     }
     try{
-        const result = await axios.post('http://54.210.91.135:3000/user/Login',loginObj)
+        const result = await axios.post('http://54.210.91.135/user/Login',loginObj)
         console.log(result.data.token)
         localStorage.setItem('token',result.data.token);
         alert(result.data.msg);

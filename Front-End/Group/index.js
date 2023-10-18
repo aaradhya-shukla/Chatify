@@ -10,7 +10,7 @@ form.addEventListener('submit',async (e)=>{
     //     return {phone:i};
     //    })
     try{
-        const result = await axios.post('http://54.210.91.135:3000/group/get-create',{
+        const result = await axios.post('http://54.210.91.135/group/get-create',{
             numbers:numbers_arr,
             name:group
         },
