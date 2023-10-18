@@ -18,6 +18,7 @@ form.addEventListener('submit',async (e)=>{
         const result = await axios.post('http://54.210.91.135/user/SignUP',userObj);
         console.log(result);
         alert(result.data.msg);
+        window.location.replace('./Login.html')
     }
     catch(err){
         console.log("error>>>",err)
@@ -29,5 +30,5 @@ form.addEventListener('submit',async (e)=>{
 
 login.addEventListener('click',(e)=>{
     e.preventDefault();
-    window.location.replace('../Login/Login.html');
+    window.location.replace('./Login.html');
 })

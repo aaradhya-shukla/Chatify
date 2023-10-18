@@ -17,7 +17,7 @@ newUser.addEventListener('click',async (e)=>{
             }
         });
         alert(result.data.msg);
-        // history.back();
+        history.back();
     }
     catch(err){
         console.log(err);

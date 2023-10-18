@@ -14,7 +14,7 @@ form.addEventListener('submit',async (e)=>{
         console.log(result.data.token)
         localStorage.setItem('token',result.data.token);
         alert(result.data.msg);
-        window.location.replace('../ChatPage/chatPagealt.html');
+        window.location.replace('./chatPagealt.html');
         
     }
     catch(err){
@@ -30,5 +30,5 @@ form.addEventListener('submit',async (e)=>{
 
 singup.addEventListener('click',(e)=>{
     e.preventDefault();
-    window.location.replace('../SignUp/SignUp.html')
+    window.location.replace('./SignUp.html')
 })

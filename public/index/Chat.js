@@ -144,7 +144,7 @@ function createGroup(e){
     //put the numbers in form of an array and send it to backend along with group name
     //call showNewGroup passing the new groups
     e.preventDefault();
-    window.location.replace('../Group/Groupe.html');
+    window.location.replace('./Groupe.html');
 }
 
 //to get any new group created by the user check periodically
@@ -383,7 +383,7 @@ async function logout(e){
                 authenticate:token
             }
         })
-        window.location.replace('../Login/Login.html')
+        window.location.replace('./Login.html')
     }
     catch{
         console.log(err)
@@ -402,7 +402,7 @@ function globalChat(e){
 
 function AdminView(e){
     e.preventDefault();
-    window.location.replace('../AdminPage/AdminPage.html');
+    window.location.replace('./AdminPage.html');
 }
 
 setInterval(async ()=>{
