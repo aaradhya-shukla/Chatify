@@ -1,9 +1,17 @@
 const { where, Op } = require('sequelize');
+
 const User = require('../models/user');
+
 const { use } = require('../routes/SignUp');
+
 const Chat = require('../models/chats');
+
 const Group = require('../models/Group');
+
 const Membership = require('../models/membership');
+
+const aws = require('aws-sdk');
+
 exports.getChats= async(req,res,next)=>{
     const id= req.body.id;
     const group_name = req.query.group;
@@ -210,3 +218,69 @@ exports.getNewUsers=async (req,res,next)=>{
         console.log(err)
      }
     }
+
+    exports.getSendFile=async (req,res,next)=>{
+        try{
+            const fileContent = Buffer.from(req.files.image.data, 'binary');
+            const FileName = `File/${new Date()}`;
+            const fileUrl = await uploadtoS3(fileContent,FileName);
+            const id = req.body.id;
+            const group_name = req.query.group
+            const user = await User.findByPk(id);
+            if(group_name){
+                const group = await Group.findOne({where:{name:group_name}})
+                const result = await user.createChat({
+                    message:fileUrl,
+                    name:user.name,
+                    GroupId:group.id
+                })
+                res.status(200).json({msg:'message succesffuly sent',message:result})
+            }
+            else{
+                const result = await user.createChat({
+                    message:fileUrl,
+                    name:user.name,
+                })
+                res.status(200).json({msg:'message succesffuly sent',message:result})
+            }
+        }
+        catch(err){
+            console.log(err);
+            res.status(500).json({fileUrl:'',success:false,err:err})
+        }
+    }
+    
+
+    async function uploadtoS3(data,FileName){
+        try{
+            const BUCKET_NAME = process.env.BUCKET_NAME;
+            const ACCESS_KEY = process.env.ACCESS_KEY;
+            const SECRET_KEY = process.env.AWS_SECRET_KEY;
+            const S3 = new aws.S3({
+            accessKeyId:ACCESS_KEY,
+            secretAccessKey:SECRET_KEY
+        });
+        var params = {
+            Bucket : BUCKET_NAME,
+            Key : FileName,
+            Body : data,
+            ACL : 'public-read'
+            }
+    
+        return new Promise((resolve,reject)=>{
+            S3.upload(params,(err,s3response)=>{
+                if(err){
+                    throw new Error(err)
+                    reject(err);
+                }
+                else{
+                    resolve(s3response.Location)
+                }
+            })
+        }) 
+        }
+        catch(err){
+            console.log(err);
+            
+        }
+        }

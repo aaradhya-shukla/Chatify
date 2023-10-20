@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input type="file" id="my-file">
+        <button id="send">Send</button>
+    </form>
+
+    <script>
+        const btn = document.getElementById('send');
+        btn.addEventListener('click',(e)=>{
+            e.preventDefault();
+            console.log(document.getElementById('my-file').value);
+        })
+
+    </script>
+</body>
+</html>

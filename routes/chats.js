@@ -18,4 +18,6 @@ router.get('/user/log-off',authenticate.authenticateToken,chatAdmin.getLogOff);
 
 router.get('/user/get-new-users',authenticate.authenticateToken,chatAdmin.getNewUsers)
 
+router.post('/user/send-File',authenticate.authenticateToken,chatAdmin.getSendFile);
+
 module.exports = router 

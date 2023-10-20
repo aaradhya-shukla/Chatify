@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const fileUpload = require('express-fileupload');
+
 const express = require('express');
 
 const bodyParser = require('body-parser');
@@ -42,6 +44,8 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname,'access.logs'),
 app.use(helmet());
 
 app.use(morgan('combined',{stream:accessLogStream}));
+
+app.use(fileUpload());
 
 app.use(expressCspHeader({ 
     policies: { 

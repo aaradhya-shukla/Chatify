@@ -405,6 +405,35 @@ function AdminView(e){
     window.location.replace('./AdminPage.html');
 }
 
+const form = document.getElementById('my-file');
+form.addEventListener('submit',sendFile);
+async function sendFile(e){
+    e.preventDefault();
+    const data = new FormData(form);
+    let group_name = localStorage.getItem('current_group');
+    if(group_name===null){
+        group_name="";
+    }
+    let messages = JSON.parse(localStorage.getItem('messages'));
+    try{
+        const result = await axios.post(`http://54.210.91.135/user/send-File?group=${group_name}`,data,{
+            headers:{
+                "Content-Type": "multipart/form-data",
+                authenticate:token
+            }
+        });
+        console.log("sendfile:",result);
+        messages.push(result.data.message);
+        localStorage.setItem('messages',JSON.stringify(messages));
+        showNewMessag([result.data.message]);
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+
+
 setInterval(async ()=>{
     await getNewGroups();
    await getNewUser();
