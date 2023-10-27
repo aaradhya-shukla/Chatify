@@ -37,6 +37,10 @@ const helmet = require('helmet');
 
 const morgan = require('morgan');
 
+const time = require('./backup');
+
+const Archive = require('./models/archive');
+
 const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header')
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname,'access.logs'),{flags:'a'});
@@ -78,6 +82,8 @@ User.belongsToMany(Group,{through:Membership});
 Group.belongsToMany(User,{through:Membership});
 Group.hasMany(chat);
 chat.belongsTo(Group);
+
+// time();
 
 sequelize.sync().
 then(()=>{

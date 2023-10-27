@@ -11,7 +11,7 @@ newUser.addEventListener('click',async (e)=>{
     e.preventDefault();
     const phone = document.getElementById('new-user').value;
     try{
-        const result = await axios.get(`http://54.210.91.135/group/get-add-newUser?phone=${phone}&group=${group_name}`,{
+        const result = await axios.get(`http://localhost:3000/group/get-add-newUser?phone=${phone}&group=${group_name}`,{
             headers:{
                 authenticate:token
             }
@@ -28,7 +28,7 @@ removeUser.addEventListener('click',async (e)=>{
     e.preventDefault();
     const phone = document.getElementById('remove-user').value;
     try{
-        const result = await axios.get(`http://54.210.91.135/group/get-delete-User?phone=${phone}&group=${group_name}`,{
+        const result = await axios.get(`http://localhost:3000/group/get-delete-User?phone=${phone}&group=${group_name}`,{
             headers:{
                 authenticate:token
             }
@@ -45,7 +45,7 @@ newAdmin.addEventListener('click',async (e)=>{
     e.preventDefault();
     const phone = document.getElementById('update-admin').value;
     try{
-        const result = await axios.get(`http://54.210.91.135/group/get-change-admin?phone=${phone}&group=${group_name}`,{
+        const result = await axios.get(`http://localhost:3000/group/get-change-admin?phone=${phone}&group=${group_name}`,{
             headers:{
                 authenticate:token
             }
